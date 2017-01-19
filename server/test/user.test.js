@@ -31,3 +31,18 @@ describe('auth routes', () => {
   });
 });
 
+describe('match users', () => {
+  it('should create 2 arrays of users', done => {
+    request
+      .get('/users/match')
+      .then(res => {
+        const givingArray = res.body.givingArray;
+        const receivingArray = res.body.receivingArray;
+        assert.isArray(givingArray);
+        assert.isArray(receivingArray);
+        assert.deepEqual(givingArray, receivingArray);
+        done();
+      })
+      .catch(done);
+  });
+});
