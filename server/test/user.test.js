@@ -7,10 +7,44 @@ const app = require('../lib/app');
 const request = chai.request(app);
 
 const user = {
-  name: 'test',
+  name: 'user',
   password: 'testPass',
   email: 'email@email.com'
 };
+
+const user2 = {
+  name: 'user2',
+  password: 'testPass',
+  email: 'email2@email.com'
+};
+
+const user3 = {
+  name: 'user3',
+  password: 'testPass',
+  email: 'email3@email.com'
+}
+
+before(done => {
+  request
+    .post('/auth/signup')
+    .send(user2)
+    .then(res => {
+      assert.isOk(res.body.token);
+      done();
+    })
+    .catch(done);
+});
+
+before(done => {
+  request
+    .post('/auth/signup')
+    .send(user3)
+    .then(res => {
+      assert.isOk(res.body.token);
+      done();
+    })
+    .catch(done);
+});
 
 describe('test initial setup', () => {
   it('should work', () => {
@@ -32,15 +66,16 @@ describe('auth routes', () => {
 });
 
 describe('match users', () => {
-  it('should create 2 arrays of users', done => {
+  it('should match all users', done => {
     request
       .get('/users/match')
       .then(res => {
-        const givingArray = res.body.givingArray;
-        const receivingArray = res.body.receivingArray;
-        assert.isArray(givingArray);
-        assert.isArray(receivingArray);
-        assert.deepEqual(givingArray, receivingArray);
+        let matches = res.body.matches;
+        let givingArray = res.body.givingArray;
+        for (var key in matches) {
+          assert.notDeepEqual(key, matches[key]);
+        }
+        assert.equal(Object.keys(matches).length, givingArray.length);     
         done();
       })
       .catch(done);

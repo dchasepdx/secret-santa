@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const auth = require('./routes/auth-router');
+const users = require('./routes/users');
 const errorHandler = require('./error-handler');
 
 const app = express();
@@ -25,6 +26,7 @@ app.use((req, res, next) => {
 app.use(express.static('./public'));
 
 app.use('/auth', auth);
+app.use('/users', users);
 app.use(errorHandler);
 
 module.exports = app;
