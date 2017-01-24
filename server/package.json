@@ -1,0 +1,33 @@
+{
+  "name": "secret-santa",
+  "version": "1.0.0",
+  "description": "secret santa matching app",
+  "main": "index.js",
+  "scripts": {
+    "test": "MONGODB_URI=mongodb://localhost/santa-test mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dchasepdx/secret-santa.git"
+  },
+  "author": "David Chase",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dchasepdx/secret-santa/issues"
+  },
+  "homepage": "https://github.com/dchasepdx/secret-santa#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.0",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "jsonwebtoken": "^7.2.1",
+    "mongoose": "^4.7.7",
+    "morgan": "^1.7.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "eslint": "^3.13.1",
+    "mocha": "^3.2.0"
+  }
+}
