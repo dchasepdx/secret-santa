@@ -75,7 +75,8 @@ describe('match users', () => {
         for (var key in matches) {
           assert.notDeepEqual(key, matches[key]);
         }
-        assert.equal(Object.keys(matches).length, givingArray.length);     
+        assert.equal(Object.keys(matches).length, givingArray.length);   
+        console.log(matches);  
         done();
       })
       .catch(done);
