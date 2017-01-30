@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const User = require('../models/user');
+const ensureToken = require('../auth/ensure-token')();
+
 
 Array.prototype.shuffle = function() {
   var i = this.length, j, temp;
@@ -14,6 +16,15 @@ Array.prototype.shuffle = function() {
 };
 
 router
+  .get('/', ensureToken, (req, res, next) => {
+    User.findById(req.user.id)
+      .select('-_id -__v -password')
+      .then(profile => {
+        res.send(profile);
+      })
+      .catch(next);
+  })
+
   .get('/match', (req, res, next) => {
     User.find({})
       .select('-password -_id -__v')
@@ -34,10 +45,14 @@ router
         }
 
         for (let i = 0; i < givingArray.length; i++) {
-          matches[givingArray[i]] = receivingArray[i];
+          User.findOne({email: givingArray[i].email})
+            .then(user => {
+              user.match = receivingArray[i];
+              user.save();
+            });
         }
 
-        res.send({givingArray, matches});
+        res.send(matches);
       })
       .catch(next);
   });

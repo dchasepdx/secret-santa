@@ -6,10 +6,8 @@ const token = require('../auth/token');
 
 router
   .post('/signup', bodyParser, (req, res, next) => {
-    console.log('connection made');
     const {email, password} = req.body;
     delete req.body.password;
-    console.log('in the sign up route');
 
     User.find({email})
       .count()

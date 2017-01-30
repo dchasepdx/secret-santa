@@ -16,6 +16,18 @@ export default function userService($http, apiUrl, tokenService) {
     },
     signout() {
       tokenService.remove();
+    },
+    getProfile() {
+      return $http.get(`${apiUrl}/users`)
+        .then(res => {
+          return res.data;
+        });
+    },
+    getMatches() {
+      return $http.get(`${apiUrl}/users/match`)
+        .then(res => {
+          return res.data;
+        });
     }
   };
 }
