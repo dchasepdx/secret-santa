@@ -2,6 +2,7 @@ import angular from 'angular';
 import components from './components';
 import services from './services';
 import 'normalize.css';
+import './scss/main.scss';
 
 import uiRouter from 'angular-ui-router';
 import 'angular-ui-router/release/stateEvents';

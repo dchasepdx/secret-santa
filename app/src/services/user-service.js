@@ -12,6 +12,7 @@ export default function userService($http, apiUrl, tokenService) {
       return $http.post(`${apiUrl}/auth/signin`, user)
         .then(res => {
           tokenService.set(res.data.token);
+          return res.data;
         });
     },
     signout() {

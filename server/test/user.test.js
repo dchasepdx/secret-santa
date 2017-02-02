@@ -74,7 +74,7 @@ describe('match users', () => {
       })
       .catch(done);
   });
-  
+
   it('should match all users', done => {
     request
       .get('/users/match')
@@ -95,6 +95,7 @@ describe('match users', () => {
       .get('/users')
       .set('authorization', user.token)
       .then(res => {
+        console.log('the match', typeof res.body.match);
         assert.isOk(res.body.match);
         done();
       })

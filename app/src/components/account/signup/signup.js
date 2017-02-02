@@ -28,6 +28,6 @@ function controller(userService) {
       this.success();
       this.reset();
     })
-    .catch(err => this.error = err.error);
+    .catch(err => this.error = err.data.error);
   };
 }

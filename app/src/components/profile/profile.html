@@ -1,4 +1,5 @@
 <h1>Name: {{$ctrl.profile.name}}</h1>
 <h1>email: {{$ctrl.profile.email}}</h1>
-<button ng-click="$ctrl.matches()">get matches</button>
-<h1 ng-if="$ctrl.matchedUsers">Matches sucessfully made</h1>
+<h1 ng-if="$ctrl.profile.match">You're giving a gift to: {{$ctrl.profile.match.name}}</h1>
+<button ng-if="!$ctrl.profile.match" ng-click="$ctrl.matches()">get matches</button>
+<h1 ng-if="$ctrl.profile.match">Matches sucessfully made</h1>

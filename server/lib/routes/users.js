@@ -34,7 +34,6 @@ router
         const receivingArray = givingArray.map(x => {
           return x;
         });
-        let matches = {};
 
         let randShift = Math.floor(Math.random() * (givingArray.length - 1) + 1);
 
@@ -52,7 +51,7 @@ router
             });
         }
 
-        res.send(matches);
+        res.send(true);
       })
       .catch(next);
   });
