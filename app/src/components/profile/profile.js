@@ -1,12 +1,15 @@
 import template from './profile.html';
+import styles from './profile.scss';
 
 export default {
   template,
-  controller
+  controller,
 };
 
-controller.$inject = ['userService'];
-function controller(userService) {
+controller.$inject = ['userService', 'tokenService', '$state'];
+function controller(userService, tokenService, $state) {
+  this.styles = styles;
+
   this.$onInit = () => {
     userService.getProfile()
       .then(profile => {
@@ -19,5 +22,10 @@ function controller(userService) {
       .then(matchedUsers => {
         this.matchedUsers = matchedUsers;
       });
+  };
+
+  this.signout = () => {
+    tokenService.remove();
+    $state.go('welcome');
   };
 }
