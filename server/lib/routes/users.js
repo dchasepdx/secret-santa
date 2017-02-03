@@ -29,26 +29,36 @@ router
     User.find({})
       .select('-password -_id -__v')
       .then(givingArray => {
-        givingArray.shuffle();
+        for(let i = 0; i < givingArray.length; i++) {
+          if(givingArray[i].match) {
+            throw {
+              code: 400,
+              error: 'users are already matched'
+            };
+          } else {
 
-        const receivingArray = givingArray.map(x => {
-          return x;
-        });
+            givingArray.shuffle();
 
-        let randShift = Math.floor(Math.random() * (givingArray.length - 1) + 1);
-
-        let tempArray = receivingArray.splice(receivingArray.length - randShift, randShift);
-
-        for (let i = tempArray.length - 1; i >= 0; i--) {
-          receivingArray.unshift(tempArray[i]);
-        }
-
-        for (let i = 0; i < givingArray.length; i++) {
-          User.findOne({email: givingArray[i].email})
-            .then(user => {
-              user.match = receivingArray[i];
-              user.save();
+            const receivingArray = givingArray.map(x => {
+              return x;
             });
+
+            let randShift = Math.floor(Math.random() * (givingArray.length - 1) + 1);
+
+            let tempArray = receivingArray.splice(receivingArray.length - randShift, randShift);
+
+            for (let i = tempArray.length - 1; i >= 0; i--) {
+              receivingArray.unshift(tempArray[i]);
+            }
+
+            for (let i = 0; i < givingArray.length; i++) {
+              User.findOne({email: givingArray[i].email})
+                .then(user => {
+                  user.match = receivingArray[i];
+                  user.save();
+                });
+            }
+          }
         }
 
         res.send(true);

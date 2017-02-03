@@ -28,7 +28,6 @@ function controller(userService) {
     })
     .catch(err => {
       this.error = err.data.error;
-      console.log(err);
     });
   };
 }

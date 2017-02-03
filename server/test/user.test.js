@@ -68,7 +68,6 @@ describe('match users', () => {
       .set('authorization', user.token)
       .then(res => {
         delete user.password;
-        console.log('profile', res.body);
         assert.deepEqual(res.body, {"email": "email@email.com", "name": "user"});
         done();
       })
@@ -83,7 +82,6 @@ describe('match users', () => {
         for (var key in matches) {
           assert.notDeepEqual(key, matches[key]);
         }
-        console.log(matches);  
         done();
       })
       .catch(done);
@@ -95,10 +93,21 @@ describe('match users', () => {
       .get('/users')
       .set('authorization', user.token)
       .then(res => {
-        console.log('the match', typeof res.body.match);
         assert.isOk(res.body.match);
         done();
       })
       .catch(done);
+  });
+
+  it('should error on a second match', done => {
+    request
+      .get('/users/match')
+      .then(() => {
+        done('should not be 200');
+      })
+      .catch(err => {
+        assert.equal(err.response.body.error, 'users are already matched');
+        done();
+      });
   });
 });
