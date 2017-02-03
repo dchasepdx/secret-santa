@@ -22,7 +22,7 @@ const user3 = {
   name: 'user3',
   password: 'testPass',
   email: 'email3@email.com'
-}
+};
 
 before(done => {
   request
@@ -46,11 +46,6 @@ before(done => {
     .catch(done);
 });
 
-describe('test initial setup', () => {
-  it('should work', () => {
-    assert.isOk(true);
-  });
-});
 
 describe('auth routes', () => {
   it('should sign a user up', done => {
@@ -59,6 +54,7 @@ describe('auth routes', () => {
       .send(user)
       .then(res => {
         assert.isOk(res.body.token);
+        user.token = res.body.token;
         done();
       })
       .catch(done);
@@ -66,18 +62,52 @@ describe('auth routes', () => {
 });
 
 describe('match users', () => {
+  it('should get a user\'s profile', done => {
+    request
+      .get('/users')
+      .set('authorization', user.token)
+      .then(res => {
+        delete user.password;
+        assert.deepEqual(res.body, {"email": "email@email.com", "name": "user"});
+        done();
+      })
+      .catch(done);
+  });
+
   it('should match all users', done => {
     request
       .get('/users/match')
       .then(res => {
         let matches = res.body.matches;
-        let givingArray = res.body.givingArray;
         for (var key in matches) {
           assert.notDeepEqual(key, matches[key]);
         }
-        assert.equal(Object.keys(matches).length, givingArray.length);     
         done();
       })
       .catch(done);
+  });
+
+
+  it('should save a match to a profile', done => {
+    request
+      .get('/users')
+      .set('authorization', user.token)
+      .then(res => {
+        assert.isOk(res.body.match);
+        done();
+      })
+      .catch(done);
+  });
+
+  it('should error on a second match', done => {
+    request
+      .get('/users/match')
+      .then(() => {
+        done('should not be 200');
+      })
+      .catch(err => {
+        assert.equal(err.response.body.error, 'users are already matched');
+        done();
+      });
   });
 });

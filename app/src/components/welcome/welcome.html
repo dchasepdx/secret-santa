@@ -1,0 +1,11 @@
+<div ng-class="$ctrl.styles.welcome">
+  <div class="background">  
+    <h1>Secret Santa Matcher</h1>
+  </div>
+    <nav>
+      <button ng-if="!$ctrl.hasToken" ui-sref="profile">Sign In</button>
+      <button ng-if="$ctrl.hasToken" ui-sref="profile">Your profile</button>
+      <button ng-if="$ctrl.hasToken" ng-click="$ctrl.signout()">Sign Out</button>
+      <button ui-sref"about">About</button>
+    </nav>
+</div>

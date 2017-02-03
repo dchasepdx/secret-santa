@@ -1,0 +1,17 @@
+:local(.profile) {
+  font-size: 2rem;
+  text-align: center;
+  position: relative;
+  top: 50%;
+  transform: translateY(110%);
+  color: #2b2c2d
+}
+
+nav {
+  button {
+    display: inline;
+    font-size: 3rem;
+    list-style-type: none;
+    text-decoration: none;
+  }
+}

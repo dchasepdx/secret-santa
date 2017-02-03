@@ -6,9 +6,8 @@ const token = require('../auth/token');
 
 router
   .post('/signup', bodyParser, (req, res, next) => {
-    const {email, password} = req.body;
+    const {email, password, name} = req.body;
     delete req.body.password;
-    console.log('in the sign up route');
 
     User.find({email})
       .count()
@@ -30,7 +29,7 @@ router
       .catch(next);
   })
   
-  .post('signin', bodyParser, (req, res, next) => {
+  .post('/signin', bodyParser, (req, res, next) => {
     const {email, password} = req.body;
     delete req.body.password;
     User.findOne({email})

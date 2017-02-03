@@ -1,0 +1,12 @@
+<nav>
+  <button ui-sref="welcome">Home</button>
+  <button ng-click="$ctrl.signout()">Sign out</button>
+</nav>
+<div ng-class="$ctrl.styles.profile">
+  <h1>Name: {{$ctrl.profile.name}}</h1>
+  <h1>email: {{$ctrl.profile.email}}</h1>
+  <h1 ng-if="$ctrl.profile.match">You're giving a gift to: {{$ctrl.profile.match.name}}</h1>
+  <button ng-if="!$ctrl.profile.match" ng-click="$ctrl.matches()">get matches</button>
+  <h1 ng-if="$ctrl.profile.match">Matches sucessfully made</h1>
+  <h1 class="error" ng-if="$ctrl.error">{{$ctrl.error}}</h1>
+</div>

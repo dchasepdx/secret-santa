@@ -1,0 +1,29 @@
+:local(.welcome) {
+  font-size: 3rem;
+  text-align: center;
+  position: relative;
+  top: 50%;
+  transform: translateY(50%);
+}
+
+.background {
+  height: 600px;
+  color: #2b2c2d;
+  h1 {
+    margin: 0 5px;
+
+  }
+}
+
+nav {
+  padding-top: 5%;
+  margin: 0 auto;
+}
+
+button {
+  padding: 15px;
+  border: 5px solid #91abd6;
+  border-radius: 20px;
+  background-color: white;
+  color: #2b2c2d
+}
