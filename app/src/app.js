@@ -23,7 +23,7 @@ const app = angular.module('Santa', [
   dialog,
 
 ]);
-app.constant('apiUrl', 'http://localhost:3000');
+app.constant('apiUrl', 'https://localhost:3000');
 
 app.config(http);
 app.config(routes);
