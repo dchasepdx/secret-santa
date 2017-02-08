@@ -1,19 +1,22 @@
 :local(.welcome) {
-  font-size: 3rem;
+  font-size: 1rem;
   text-align: center;
-  position: relative;
-  top: 50%;
-  transform: translateY(50%);
+  margin: 5% auto;
 }
 
 .background {
-  height: 600px;
   color: #2b2c2d;
   h1 {
-    margin: 0 5px;
+    margin: 5px;
 
   }
 }
+
+.banner {
+  width: 100%;
+  height: auto;
+}
+
 
 nav {
   padding-top: 5%;
@@ -22,8 +25,10 @@ nav {
 
 button {
   padding: 15px;
-  border: 5px solid #91abd6;
+  border: 5px solid #BF1E2E;
   border-radius: 20px;
   background-color: white;
   color: #2b2c2d
 }
+
+// @media only screen and (min-width: )
