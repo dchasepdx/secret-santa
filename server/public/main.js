@@ -91,7 +91,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var app = _angular2.default.module('Santa', [_components2.default, _services2.default, _angularUiRouter2.default, _angular2.default.module('ui.router.state.events').name, _ngDialog2.default]);
-	app.constant('apiUrl', 'https://localhost:3000');
+	app.constant('apiUrl', ("") != null ? ("") : 'https://localhost:3000');
 	
 	app.config(_http2.default);
 	app.config(_routes2.default);
