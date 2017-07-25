@@ -21,6 +21,7 @@ function controller(userService, tokenService, $state) {
     userService.getMatches()
       .then(matchedUsers => {
         this.matchedUsers = matchedUsers;
+        this.$onInit();
       })
       .catch(err => {
         this.error = err.data.error;
