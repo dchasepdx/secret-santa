@@ -91,7 +91,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var app = _angular2.default.module('Santa', [_components2.default, _services2.default, _angularUiRouter2.default, _angular2.default.module('ui.router.state.events').name, _ngDialog2.default]);
-	app.constant('apiUrl', ("") != null ? ("") : 'https://localhost:3000');
+	app.constant('apiUrl', ("") != null ? ("") : 'http://localhost:3000');
 	
 	app.config(_http2.default);
 	app.config(_routes2.default);
@@ -33811,6 +33811,7 @@
 	  this.matches = function () {
 	    userService.getMatches().then(function (matchedUsers) {
 	      _this.matchedUsers = matchedUsers;
+	      _this.$onInit();
 	    }).catch(function (err) {
 	      _this.error = err.data.error;
 	    });
@@ -33826,7 +33827,7 @@
 /* 15 */
 /***/ function(module, exports) {
 
-	module.exports = "<nav>\n  <button ui-sref=\"welcome\">Home</button>\n  <button ng-click=\"$ctrl.signout()\">Sign out</button>\n</nav>\n<div ng-class=\"$ctrl.styles.profile\">\n  <h1>Name: {{$ctrl.profile.name}}</h1>\n  <h1>email: {{$ctrl.profile.email}}</h1>\n  <h1 ng-if=\"$ctrl.profile.match\">You're giving a gift to: {{$ctrl.profile.match.name}}</h1>\n  <button ng-if=\"!$ctrl.profile.match\" ng-click=\"$ctrl.matches()\">get matches</button>\n  <h1 ng-if=\"$ctrl.profile.match\">Matches sucessfully made</h1>\n  <h1 class=\"error\" ng-if=\"$ctrl.error\">{{$ctrl.error}}</h1>\n</div>";
+	module.exports = "<nav class=\"profile-nav\">\n  <button ui-sref=\"welcome\">Home</button>\n  <button ng-click=\"$ctrl.signout()\">Sign out</button>\n</nav>\n<div ng-class=\"$ctrl.styles.profile\">\n  <h1>Name: {{$ctrl.profile.name}}</h1>\n  <h1>email: {{$ctrl.profile.email}}</h1>\n  <h1 ng-if=\"$ctrl.profile.match\">You're giving a gift to: {{$ctrl.profile.match.name}}</h1>\n  <button ng-if=\"!$ctrl.profile.match\" ng-click=\"$ctrl.matches()\">get matches</button>\n  <h1 ng-if=\"$ctrl.profile.match\">Matches sucessfully made</h1>\n  <h1 class=\"error\" ng-if=\"$ctrl.error\">{{$ctrl.error}}</h1>\n</div>";
 
 /***/ },
 /* 16 */
@@ -33863,7 +33864,7 @@
 	
 	
 	// module
-	exports.push([module.id, "._3z0ZR-ff-NLQoPBo8gGSQf {\n  font-size: 2rem;\n  text-align: center;\n  position: relative;\n  top: 50%;\n  transform: translateY(110%);\n  color: #2b2c2d; }\n\nnav button {\n  display: inline;\n  font-size: 3rem;\n  list-style-type: none;\n  text-decoration: none; }\n", "", {"version":3,"sources":["/./src/components/profile/src/components/profile/profile.scss"],"names":[],"mappings":"AAAA;EACE,gBAAe;EACf,mBAAkB;EAClB,mBAAkB;EAClB,SAAQ;EACR,4BAA2B;EAC3B,eACF,EAAE;;AAEF;EAEI,gBAAe;EACf,gBAAe;EACf,sBAAqB;EACrB,sBAAqB,EACtB","file":"profile.scss","sourcesContent":[":local(.profile) {\n  font-size: 2rem;\n  text-align: center;\n  position: relative;\n  top: 50%;\n  transform: translateY(110%);\n  color: #2b2c2d\n}\n\nnav {\n  button {\n    display: inline;\n    font-size: 3rem;\n    list-style-type: none;\n    text-decoration: none;\n  }\n}"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "._3z0ZR-ff-NLQoPBo8gGSQf {\n  font-size: 1rem;\n  margin: 5% auto;\n  text-align: center;\n  color: #2b2c2d; }\n\n.profile-nav {\n  margin-left: 5%; }\n  .profile-nav button {\n    display: inline;\n    font-size: 1rem;\n    list-style-type: none;\n    text-decoration: none; }\n", "", {"version":3,"sources":["/./src/components/profile/src/components/profile/profile.scss"],"names":[],"mappings":"AAAA;EACE,gBAAe;EACf,gBAAe;EACf,mBAAkB;EAClB,eAAc,EACf;;AAED;EAOE,gBAAe,EAEhB;EATD;IAEI,gBAAe;IACf,gBAAe;IACf,sBAAqB;IACrB,sBAAqB,EACtB","file":"profile.scss","sourcesContent":[":local(.profile) {\n  font-size: 1rem;\n  margin: 5% auto;\n  text-align: center;\n  color: #2b2c2d;\n}\n\n.profile-nav {\n  button {\n    display: inline;\n    font-size: 1rem;\n    list-style-type: none;\n    text-decoration: none;\n  }\n  margin-left: 5%;\n\n}"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 	exports.locals = {
@@ -34228,7 +34229,7 @@
 /* 21 */
 /***/ function(module, exports) {
 
-	module.exports = "<div ng-class=\"$ctrl.styles.welcome\">\n  <div class=\"background\">  \n    <h1>Secret Santa Matcher</h1>\n  </div>\n    <nav>\n      <button ng-if=\"!$ctrl.hasToken\" ui-sref=\"profile\">Sign In</button>\n      <button ng-if=\"$ctrl.hasToken\" ui-sref=\"profile\">Your profile</button>\n      <button ng-if=\"$ctrl.hasToken\" ng-click=\"$ctrl.signout()\">Sign Out</button>\n      <button ui-sref\"about\">About</button>\n    </nav>\n</div>\n";
+	module.exports = "<div ng-class=\"$ctrl.styles.welcome\">\n  <div class=\"background\">  \n    <h1>Secret Santa Matcher</h1>\n  </div>\n  <div class=\"banner\"><img src=\"https://static-cdn.jtvnw.net/jtv_user_pictures/santa-profile_image-a6749f260a9c1fa6-300x300.png\"></div>\n    <nav>\n      <button ng-if=\"!$ctrl.hasToken\" ui-sref=\"profile\">Sign In</button>\n      <button ng-if=\"$ctrl.hasToken\" ui-sref=\"profile\">Your profile</button>\n      <button ng-if=\"$ctrl.hasToken\" ng-click=\"$ctrl.signout()\">Sign Out</button>\n    </nav>\n</div>\n";
 
 /***/ },
 /* 22 */
@@ -34265,7 +34266,7 @@
 	
 	
 	// module
-	exports.push([module.id, "._23XnJNGIuxwbbctNa1oBpu {\n  font-size: 3rem;\n  text-align: center;\n  position: relative;\n  top: 50%;\n  transform: translateY(50%); }\n\n.background {\n  height: 600px;\n  color: #2b2c2d; }\n  .background h1 {\n    margin: 0 5px; }\n\nnav {\n  padding-top: 5%;\n  margin: 0 auto; }\n\nbutton {\n  padding: 15px;\n  border: 5px solid #91abd6;\n  border-radius: 20px;\n  background-color: white;\n  color: #2b2c2d; }\n", "", {"version":3,"sources":["/./src/components/welcome/src/components/welcome/welcome.scss"],"names":[],"mappings":"AAAA;EACE,gBAAe;EACf,mBAAkB;EAClB,mBAAkB;EAClB,SAAQ;EACR,2BAA0B,EAC3B;;AAED;EACE,cAAa;EACb,eAAc,EAKf;EAPD;IAII,cAAa,EAEd;;AAGH;EACE,gBAAe;EACf,eAAc,EACf;;AAED;EACE,cAAa;EACb,0BAAyB;EACzB,oBAAmB;EACnB,wBAAuB;EACvB,eACF,EAAE","file":"welcome.scss","sourcesContent":[":local(.welcome) {\n  font-size: 3rem;\n  text-align: center;\n  position: relative;\n  top: 50%;\n  transform: translateY(50%);\n}\n\n.background {\n  height: 600px;\n  color: #2b2c2d;\n  h1 {\n    margin: 0 5px;\n\n  }\n}\n\nnav {\n  padding-top: 5%;\n  margin: 0 auto;\n}\n\nbutton {\n  padding: 15px;\n  border: 5px solid #91abd6;\n  border-radius: 20px;\n  background-color: white;\n  color: #2b2c2d\n}"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "._23XnJNGIuxwbbctNa1oBpu {\n  font-size: 1rem;\n  text-align: center;\n  margin: 5% auto; }\n\n.background {\n  color: #2b2c2d; }\n  .background h1 {\n    margin: 5px; }\n\n.banner {\n  width: 100%;\n  height: auto; }\n\nnav {\n  padding-top: 5%;\n  margin: 0 auto; }\n\nbutton {\n  padding: 15px;\n  border: 5px solid #BF1E2E;\n  border-radius: 20px;\n  background-color: white;\n  color: #2b2c2d; }\n", "", {"version":3,"sources":["/./src/components/welcome/src/components/welcome/welcome.scss"],"names":[],"mappings":"AAAA;EACE,gBAAe;EACf,mBAAkB;EAClB,gBAAe,EAChB;;AAED;EACE,eAAc,EAKf;EAND;IAGI,YAAW,EAEZ;;AAGH;EACE,YAAW;EACX,aAAY,EACb;;AAGD;EACE,gBAAe;EACf,eAAc,EACf;;AAED;EACE,cAAa;EACb,0BAAyB;EACzB,oBAAmB;EACnB,wBAAuB;EACvB,eACF,EAAE","file":"welcome.scss","sourcesContent":[":local(.welcome) {\n  font-size: 1rem;\n  text-align: center;\n  margin: 5% auto;\n}\n\n.background {\n  color: #2b2c2d;\n  h1 {\n    margin: 5px;\n\n  }\n}\n\n.banner {\n  width: 100%;\n  height: auto;\n}\n\n\nnav {\n  padding-top: 5%;\n  margin: 0 auto;\n}\n\nbutton {\n  padding: 15px;\n  border: 5px solid #BF1E2E;\n  border-radius: 20px;\n  background-color: white;\n  color: #2b2c2d\n}\n\n// @media only screen and (min-width: )"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 	exports.locals = {
@@ -34440,7 +34441,7 @@
 	
 	
 	// module
-	exports.push([module.id, "body {\n  max-width: 100%;\n  margin: 0 auto; }\n\n.ngdialog.ngdialog-theme-default .ngdialog-content {\n  font-size: 2.75rem;\n  width: 75%; }\n\n.error {\n  color: red; }\n", "", {"version":3,"sources":["/./src/scss/src/scss/main.scss"],"names":[],"mappings":"AAAA;EACE,gBAAe;EACf,eAAc,EACf;;AAED;EACE,mBAAkB;EAClB,WAAU,EACX;;AAED;EACE,WAAU,EACX","file":"main.scss","sourcesContent":["body {\n  max-width: 100%;\n  margin: 0 auto;\n}\n\n.ngdialog.ngdialog-theme-default .ngdialog-content {\n  font-size: 2.75rem;\n  width: 75%;\n}\n\n.error {\n  color: red;\n}"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "body {\n  max-width: 100%;\n  margin: 0 auto; }\n\n.ngdialog.ngdialog-theme-default .ngdialog-content {\n  font-size: 1rem;\n  width: 75%;\n  max-width: 450px; }\n\n.error {\n  color: red; }\n", "", {"version":3,"sources":["/./src/scss/src/scss/main.scss"],"names":[],"mappings":"AAAA;EACE,gBAAe;EACf,eAAc,EACf;;AAED;EACE,gBAAe;EACf,WAAU;EACV,iBAAgB,EACjB;;AAED;EACE,WAAU,EACX","file":"main.scss","sourcesContent":["body {\n  max-width: 100%;\n  margin: 0 auto;\n}\n\n.ngdialog.ngdialog-theme-default .ngdialog-content {\n  font-size: 1rem;\n  width: 75%;\n  max-width: 450px;\n}\n\n.error {\n  color: red;\n}"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 

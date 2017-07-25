@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // Set the URI to point to our database
-const dbURI = process.env.MONGODB_URI;
+const dbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/santa';
 
 mongoose.Promise = Promise;
 mongoose.connect( dbURI );
